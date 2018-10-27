@@ -41,9 +41,9 @@ class DieImplTest {
 
         //hand
         hand = new HandImpl();
-        ArrayList<DieImpl> dices = new ArrayList<>();
-        dices.add(new DieImpl());
-        dices.add(new DieImpl());
+        DieImpl[] dices = new DieImpl[2];
+        dices[0] = new DieImpl();
+        dices[1] = new DieImpl();
         hand.setDices(dices);
     }
 

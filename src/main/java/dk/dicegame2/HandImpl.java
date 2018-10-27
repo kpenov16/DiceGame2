@@ -3,17 +3,17 @@ package dk.dicegame2;
 import java.util.ArrayList;
 
 public class HandImpl {
-    private ArrayList<DieImpl> dices;
+    private DieImpl[] dices;
     private boolean dicesAreSame = true;
 
     public int roll() {
         int hand = 0;
-        int currentDice = dices.get(0).roll();//1
+        int currentDice = dices[0].roll();//1
         int previousDice = -1;
         hand += currentDice;
-        for(int i=1; i< dices.size(); i++){
+        for(int i=1; i< dices.length; i++){
             previousDice = currentDice;
-            currentDice = dices.get(i).roll();//3
+            currentDice = dices[i].roll();//3
             if(currentDice != previousDice)
                 dicesAreSame = false;
             hand += currentDice;
@@ -25,7 +25,7 @@ public class HandImpl {
         return dicesAreSame;
     }
 
-    protected void setDices(ArrayList<DieImpl> dices){
+    protected void setDices(DieImpl[] dices){
         this.dices = dices;
     }
 }
