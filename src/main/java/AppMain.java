@@ -4,6 +4,7 @@ public class AppMain {
         System.out.println("Hello from DiceGame2");
         //this is DieClass branch
         //some change to Die class branch
+        // fixing bug
     }
 
 }
