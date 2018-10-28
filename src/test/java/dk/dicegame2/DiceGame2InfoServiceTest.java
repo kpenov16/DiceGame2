@@ -1,17 +1,18 @@
 package dk.dicegame2;
 
+import dk.dicegame2.port.InfoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InfoServiceTest {
-    private  InfoService infoService;
+class DiceGame2InfoServiceTest {
+    private InfoService infoService;
 
     @BeforeEach
     void setUp() {
-        infoService = new InfoService();
+        infoService = new DiceGame2InfoService();
     }
 
     @AfterEach
@@ -26,6 +27,7 @@ class InfoServiceTest {
 
         //assert
         assertEquals(250, infoService.getScore());
+        assertEquals("Tower", infoService.getLocation());
         assertEquals("Du har fundet Tower og får 250 kr, du er rig!", infoService.getMessage());
     }
 
@@ -36,6 +38,7 @@ class InfoServiceTest {
 
         //assert
         assertEquals(-100, infoService.getScore());
+        assertEquals("Crater", infoService.getLocation());
         assertEquals("Du har fundet Crater og får -100 kr, du er ikke rig!", infoService.getMessage());
     }
 
@@ -46,6 +49,7 @@ class InfoServiceTest {
 
         //assert
         assertEquals(0, infoService.getScore());
+        assertEquals("", infoService.getLocation());
         assertEquals("", infoService.getMessage());
     }
 }
