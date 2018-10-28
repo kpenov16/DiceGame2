@@ -45,4 +45,14 @@ class AccountTest {
         assertEquals(2000, account.getBalance());
     }
 
+    //    Spillerens pengebeholdning skal aldrig går i minus.
+    @Test
+    public void givenSubtractingMoreThanInAccount_returnBalanceIsZero(){
+        //act
+        account.subtract(2 * account.getBalance());
+
+        //assert
+        assertEquals(0, account.getBalance());
+    }
+
 }

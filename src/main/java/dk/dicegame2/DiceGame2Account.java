@@ -5,10 +5,12 @@ import dk.dicegame2.port.Account;
 public class DiceGame2Account extends Account {
     @Override
     public void add(int addend) {
-       super.balance += addend;
+       balance += addend;
     }
     @Override
     public void subtract(int subtrahend){
-        super.balance -= subtrahend;
+        int tempBalance = balance - subtrahend;
+        balance = (tempBalance < 0) ? 0 : tempBalance;
     }
+
 }
