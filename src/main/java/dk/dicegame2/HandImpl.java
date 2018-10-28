@@ -25,7 +25,7 @@ public class HandImpl {
         return dicesAreSame;
     }
 
-    protected void setDices(DieImpl[] dices){
+    protected void setDice(DieImpl[] dices){
         this.dices = dices;
     }
 }

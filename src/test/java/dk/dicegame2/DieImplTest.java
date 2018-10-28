@@ -41,10 +41,10 @@ class DieImplTest {
 
         //hand
         hand = new HandImpl();
-        DieImpl[] dices = new DieImpl[2];
-        dices[0] = new DieImpl();
-        dices[1] = new DieImpl();
-        hand.setDices(dices);
+        DieImpl[] dice = new DieImpl[2];
+        dice[0] = new DieImpl();
+        dice[1] = new DieImpl();
+        hand.setDice(dice);
     }
 
     @AfterEach
@@ -53,7 +53,6 @@ class DieImplTest {
 
     @Test
     public void givenRollingHand_returnNuberBetween2And12(){
-
         assertTrue(eachRollIsValidNumber(NUMBER_HAND_OUTCOMES, hand, HAND_OUTCOMES));
     }
 
@@ -75,22 +74,7 @@ class DieImplTest {
         int occurrenceOf10 = getOccurrence("10", allHands);
         int occurrenceOf11 = getOccurrence("11", allHands);
         int occurrenceOf12 = getOccurrence("12", allHands);
-        /*
-        double mean = (occurrenceOf1 + occurrenceOf2 + occurrenceOf3 + occurrenceOf4 + occurrenceOf5 + occurrenceOf6) / 6;
-        int meanAsInt = (int) mean;
-        //System.out.println("mean : " + mean);
-        double averageMeanOf1 = Math.pow((occurrenceOf1 - mean), 2);
-        double averageMeanOf2 = Math.pow((occurrenceOf2 - mean), 2);
-        //System.out.println("averageMeanOf2 : " + averageMeanOf2 + "pow of: " + (occurrenceOf2 - mean));
-        double averageMeanOf3 = Math.pow((occurrenceOf3 - mean), 2);
-        double averageMeanOf4 = Math.pow((occurrenceOf4 - mean), 2);
-        double averageMeanOf5 = Math.pow((occurrenceOf5 - mean), 2);
-        double averageMeanOf6 = Math.pow((occurrenceOf6 - mean), 2);
-        double sqredAvrMean = (averageMeanOf1 + averageMeanOf2 + averageMeanOf3 + averageMeanOf4 + averageMeanOf5 + averageMeanOf6) / 6;
-        //System.out.println("sqredAvrMean : " + sqredAvrMean);
-        double stdDev = Math.sqrt(sqredAvrMean);
-        System.out.println("standard diviation : " + stdDev);
-        */
+
         System.out.println(
                 "2 : " + occurrenceOf2 + " \n" +
                         "3 : " + occurrenceOf3 + " \n" +
@@ -107,16 +91,6 @@ class DieImplTest {
 
         for(String handOutcome : HAND_OUTCOMES)
             assertOccurrenceMatchExpectedRange(handOutcome, allHands, BASE_EXPECTED_OCCURRANCES_HANDS, DEVIATION_HANDS);
-
-        /*
-        assertOccurrenceMatchExpectedRange("6", allRolls, BASE_EXPECTED_OCCURRANCES, DEVIATION_DICES);
-        assertOccurrenceMatchExpectedRange("5", allRolls, BASE_EXPECTED_OCCURRANCES, DEVIATION_DICES);
-        assertOccurrenceMatchExpectedRange("4", allRolls, BASE_EXPECTED_OCCURRANCES, DEVIATION_DICES);
-        assertOccurrenceMatchExpectedRange("3", allRolls, BASE_EXPECTED_OCCURRANCES, DEVIATION_DICES);
-        assertOccurrenceMatchExpectedRange("2", allRolls, BASE_EXPECTED_OCCURRANCES, DEVIATION_DICES);
-        assertOccurrenceMatchExpectedRange("1", allRolls, BASE_EXPECTED_OCCURRANCES, DEVIATION_DICES);
-        */
-        //endregion
     }
 
 
