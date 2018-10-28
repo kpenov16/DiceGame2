@@ -3,7 +3,7 @@ package dk.dicegame2.port;
 public abstract class Account {
     //En spiller starter med 1000 kr i sin pengebeholdning.
     protected int balance = 1000;
-    protected String owner = "";
+    protected Owner owner;
 
     public int getBalance() {
         return balance;
@@ -13,6 +13,8 @@ public abstract class Account {
 
     protected abstract void setBalance(int newBalance);
 
-    public abstract void setOwner(String owner);
-    public abstract String getOwner();
+    public abstract void setOwner(Owner owner);
+    public abstract Owner getOwner();
+
+    public abstract String getOwnerName();
 }

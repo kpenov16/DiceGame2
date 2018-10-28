@@ -1,8 +1,10 @@
 package dk.dicegame2;
 
 import dk.dicegame2.port.Account;
+import dk.dicegame2.port.Owner;
 
 public class DiceGame2Account extends Account {
+
     @Override
     public void add(int addend) {
        balance += addend;
@@ -12,20 +14,22 @@ public class DiceGame2Account extends Account {
         int tempBalance = balance - subtrahend;
         balance = (tempBalance < 0) ? 0 : tempBalance;
     }
-
     @Override
     protected void setBalance(int newBalance) {
-        super.balance = newBalance;
+        balance = newBalance;
+    }
+    @Override
+    public void setOwner(Owner newOwner) {
+        owner = newOwner;
+    }
+    @Override
+    public Owner getOwner() {
+        return owner;
     }
 
     @Override
-    public void setOwner(String owner) {
-        super.owner = owner;
-    }
-
-    @Override
-    public String getOwner() {
-        return super.owner;
+    public String getOwnerName() {
+        return owner.getName();
     }
 
 }

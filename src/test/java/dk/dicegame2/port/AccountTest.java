@@ -1,7 +1,6 @@
 package dk.dicegame2.port;
 
 import dk.dicegame2.DiceGame2Account;
-import dk.dicegame2.port.Account;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +36,6 @@ class AccountTest {
         assertEquals(0, account.getBalance());
     }
 
-
     @Test
     public void givenAdding1000ToNewAccount_returnBalanceIs2000(){
         //act
@@ -47,7 +45,7 @@ class AccountTest {
         assertEquals(2000, account.getBalance());
     }
 
-    //    Spillerens pengebeholdning skal aldrig går i minus.
+    //Spillerens pengebeholdning skal aldrig går i minus.
     @Test
     public void givenSubtractingMoreThanInAccount_returnBalanceIsZero(){
         //act
@@ -62,9 +60,24 @@ class AccountTest {
     public void givenNewAccountWithOwner_returnAccountOwner(){
         //arrange
         //act
-        account.setOwner("Player1");
+        Owner owner = new FakePlayer();
+        owner.setName("Player1");
+        account.setOwner(owner);
 
         //assert
-        assertEquals("Player1", account.getOwner());
+        assertEquals("Player1", account.getOwner().getName());
+        assertEquals("Player1", account.getOwnerName());
     }
+
+    private class FakePlayer extends Player{
+        @Override
+        public String getName() {
+            return super.name;
+        }
+        @Override
+        public void setName(String name) {
+            super.name = name;
+        }
+    }
+
 }
