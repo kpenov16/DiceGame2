@@ -77,6 +77,26 @@ class AccountTest {
         public void setName(String name) {
             super.name = name;
         }
+
+        @Override
+        public int getBalance() {
+            return 0;
+        }
+
+        @Override
+        public Account getAccount() {
+            return null;
+        }
+
+        @Override
+        protected void setAccount(Account account) {
+
+        }
+
+        @Override
+        public boolean isWinner() {
+            return false;
+        }
     }
 
 }
