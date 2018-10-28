@@ -1,5 +1,6 @@
 package dk.dicegame2;
 
+import dk.dicegame2.port.Account;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ class AccountTest {
     @BeforeEach
     void setUp() {
         //arrange
-        account = new Account();
+        account = new DiceGame2Account();
     }
 
     @AfterEach
@@ -33,6 +34,7 @@ class AccountTest {
         //assert
         assertEquals(0, account.getBalance());
     }
+
 
     @Test
     public void givenAdding1000ToNewAccount_returnBalanceIs2000(){
