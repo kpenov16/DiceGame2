@@ -20,7 +20,7 @@ class DieTest {
     private static int NUMBER_DICE_SIDES = DICE_SIDES.length;
     private static final int BASE_EXPECTED_OCCURRANCES = NUMBER_OF_ROLLS / NUMBER_DICE_SIDES;
     private static final int DEVIATION_DICES = (int)(BASE_EXPECTED_OCCURRANCES * FRAC_DIVIATION);
-    private static Die dice;
+    private static Die die;
 
     private static final int NUMBER_OF_ROLL_HANDS = 60_000;
     private static final double FRAC_DIVIATION_HANDS = 0.9;
@@ -33,7 +33,7 @@ class DieTest {
     @BeforeEach
     void setUp() {
         //dice
-        dice = new SixSidedDieImpl();
+        die = new SixSidedDieImpl();
 
 
         //hand
@@ -124,7 +124,7 @@ class DieTest {
 
     @Test
     public void givenCertainNumberOfRolls_returnOnlyValidNumbersOccurrence(){
-        assertTrue( eachRollIsValidNumber(NUMBER_OF_ROLLS, dice, DICE_SIDES) );
+        assertTrue( eachRollIsValidNumber(NUMBER_OF_ROLLS, die, DICE_SIDES) );
     }
 
     private boolean eachRollIsValidNumber(int numberOfRolls, HandImpl roller, final String[] diceSides) {
@@ -168,7 +168,7 @@ class DieTest {
     public void givenBaseLineAndDeviation_returnEachOccurrenceWithinLimits() {
         String allRolls = "";
         for (int i = 0; i < NUMBER_OF_ROLLS; i++)
-            allRolls += dice.roll();
+            allRolls += die.roll();
 
         for(String diceSide : DICE_SIDES)
             assertOccurrenceMatchExpectedRange(diceSide, allRolls, BASE_EXPECTED_OCCURRANCES, DEVIATION_DICES);
