@@ -15,7 +15,6 @@ Ikke forsinkelser > 3 millisek
 Spillet skal kunne "let"(det er ikke præcis nok) oversættes til andre sprog.
 Man skal kunne "let"(det er ikke præcis nok) udskifte til andre terninger.
 Spilleren skal kunne bruge sin pengebeholdning i andre spil.
-Spillerens pengebeholdning skal aldrig går i minus.
 
 Funktionelle krav:
 Et spil mellem 2 spillere.
@@ -23,6 +22,7 @@ Spiller slår på skift med 2 terninger
 Spiller får tal fra 2 til 12.
 En spiller starter med 1000 kr i sin pengebeholdning.
 En spiller vinder ved 3000 kr i sin pengebeholdning.
+Spillerens pengebeholdning skal aldrig går i minus.
 
 Spiller slår 2, får +250 i sin pengebeholdning og 
 flytter til felt Tower og kan se beskeden 

@@ -4,15 +4,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DieImplTest {
+class DieTest {
 
     private static String[] DICE_SIDES = new String[]{"1","2","3","4","5","6"};
     private static String[] HAND_OUTCOMES = new String[]{"2","3","4","5","6","7",
@@ -23,7 +20,7 @@ class DieImplTest {
     private static int NUMBER_DICE_SIDES = DICE_SIDES.length;
     private static final int BASE_EXPECTED_OCCURRANCES = NUMBER_OF_ROLLS / NUMBER_DICE_SIDES;
     private static final int DEVIATION_DICES = (int)(BASE_EXPECTED_OCCURRANCES * FRAC_DIVIATION);
-    private static DieImpl dice;
+    private static Die dice;
 
     private static final int NUMBER_OF_ROLL_HANDS = 60_000;
     private static final double FRAC_DIVIATION_HANDS = 0.9;
@@ -36,20 +33,21 @@ class DieImplTest {
     @BeforeEach
     void setUp() {
         //dice
-        dice = new DieImpl();
+        dice = new SixSidedDieImpl();
 
 
         //hand
         hand = new HandImpl();
-        DieImpl[] dice = new DieImpl[2];
-        dice[0] = new DieImpl();
-        dice[1] = new DieImpl();
+        Die[] dice = new Die[2];
+        dice[0] = new SixSidedDieImpl();
+        dice[1] = new SixSidedDieImpl();
         hand.setDice(dice);
     }
 
     @AfterEach
     void tearDown() {
     }
+
 
     @Test
     public void givenRollingHand_returnNuberBetween2And12(){
@@ -93,6 +91,36 @@ class DieImplTest {
             assertOccurrenceMatchExpectedRange(handOutcome, allHands, BASE_EXPECTED_OCCURRANCES_HANDS, DEVIATION_HANDS);
     }
 
+    @Test
+    public void givenCertainNumberOfRollsWithDieFrom1To7Sides_returnOnlyValidNumbersOccurrence(){
+        String[] DICE_SIDES_1to7 = new String[]{"1","2","3","4","5","6","7"};
+        Die dieWithSidesFrom1to7 = new SevenSidedDieImpl();
+
+        assertTrue( eachRollIsValidNumber(NUMBER_OF_ROLLS, dieWithSidesFrom1to7, DICE_SIDES_1to7) );
+    }
+
+    @Test
+    public void givenCertainNumberOfRollsWithDieFrom1To7Sides_returnAllValidSidesWereRolled(){
+        String[] validSides = new String[]{"1","2","3","4","5","6","7"};
+        Die sevenSidedDie = new SevenSidedDieImpl();
+
+        assertTrue( allValidSidesWereRolled(NUMBER_OF_ROLLS, sevenSidedDie, validSides) );
+    }
+
+    private boolean allValidSidesWereRolled(int numberOfRolls, Die sevenSidedDie, String[] validSides) {
+        String allRolls = "";
+        for (int i = 0; i < numberOfRolls; i++)
+            allRolls += sevenSidedDie.roll();
+
+        for (String valid : validSides){
+            Pattern pattern = Pattern.compile(valid);
+            Matcher matcherOne = pattern.matcher(allRolls);
+            if(!matcherOne.find())
+                return false;
+        }
+        return true;
+    }
+
 
     @Test
     public void givenCertainNumberOfRolls_returnOnlyValidNumbersOccurrence(){
@@ -100,7 +128,7 @@ class DieImplTest {
     }
 
     private boolean eachRollIsValidNumber(int numberOfRolls, HandImpl roller, final String[] diceSides) {
-        List<String> validNumbers = new ArrayList<>( Arrays.asList(diceSides) );
+        String[] validNumbers = diceSides;
         boolean allRollsValid = true;
         for(int i = 0; i < numberOfRolls; i++){
             String currentRoll = String.valueOf( roller.roll() );
@@ -112,8 +140,8 @@ class DieImplTest {
         return allRollsValid;
     }
 
-    private boolean eachRollIsValidNumber(int numberOfRolls, DieImpl roller, final String[] diceSides) {
-        List<String> validNumbers = new ArrayList<>( Arrays.asList(diceSides) );
+    private boolean eachRollIsValidNumber(int numberOfRolls, Die roller, final String[] diceSides) {
+        String[] validNumbers = diceSides;
         boolean allRollsValid = true;
         for(int i = 0; i < numberOfRolls; i++){
             String currentRoll = String.valueOf( roller.roll() );
@@ -125,7 +153,7 @@ class DieImplTest {
         return allRollsValid;
     }
 
-    private boolean isCurrentRollFound(List<String> validNumbers, String currentRoll) {
+    private boolean isCurrentRollFound(String[] validNumbers, String currentRoll) {//(List<String> validNumbers, String currentRoll) {
         boolean currentRollFound = false;
         for(String num : validNumbers){
             if(num.equals(currentRoll)){
