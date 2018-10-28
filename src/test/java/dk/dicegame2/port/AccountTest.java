@@ -1,5 +1,6 @@
-package dk.dicegame2;
+package dk.dicegame2.port;
 
+import dk.dicegame2.DiceGame2Account;
 import dk.dicegame2.port.Account;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ class AccountTest {
     void setUp() {
         //arrange
         account = new DiceGame2Account();
+        account.setBalance(1000);
     }
 
     @AfterEach
@@ -55,4 +57,14 @@ class AccountTest {
         assertEquals(0, account.getBalance());
     }
 
+    //Spilleren skal kunne bruge sin pengebeholdning i andre spil.
+    @Test
+    public void givenNewAccountWithOwner_returnAccountOwner(){
+        //arrange
+        //act
+        account.setOwner("Player1");
+
+        //assert
+        assertEquals("Player1", account.getOwner());
+    }
 }
