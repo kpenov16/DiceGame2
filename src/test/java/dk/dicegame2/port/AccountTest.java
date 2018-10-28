@@ -68,7 +68,6 @@ class AccountTest {
         assertEquals("Player1", account.getOwner().getName());
         assertEquals("Player1", account.getOwnerName());
     }
-
     private class FakePlayer extends Player{
         @Override
         public String getName() {
