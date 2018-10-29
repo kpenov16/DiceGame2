@@ -94,8 +94,38 @@ class AccountTest {
         }
 
         @Override
+        public InfoService getInfoService() {
+            return null;
+        }
+
+        @Override
+        protected void setInfoService(InfoService infoService) {
+
+        }
+
+        @Override
         public boolean isWinner() {
             return false;
+        }
+
+        @Override
+        public void play() {
+
+        }
+
+        @Override
+        public void setHand(Hand hand) {
+
+        }
+
+        @Override
+        public String getLocation() {
+            return null;
+        }
+
+        @Override
+        public String getMessage() {
+            return null;
         }
     }
 

@@ -1,7 +1,9 @@
 package dk.dicegame2.port;
 
 import dk.dicegame2.DiceGame2Account;
+import dk.dicegame2.DiceGame2InfoService;
 import dk.dicegame2.DiceGame2Player;
+import dk.dicegame2.Die;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,11 +12,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DiceGame2PlayerTest {
     private Player player;
+    FakeHand hand;
+    FakeInfoService fakeInfoService;
 
     @BeforeEach
     void setUp() {
         player = new DiceGame2Player(new DiceGame2Account());
         player.setName("Jan");
+        hand = new FakeHand();
+        fakeInfoService = new FakeInfoService();
     }
 
     @AfterEach
@@ -69,6 +75,7 @@ class DiceGame2PlayerTest {
         assertEquals(true, player.isWinner());
     }
 
+
     @Test
     public void givenPlayerScoreIsLessThan3000_returnPlayerNotWinner(){
         //arrange
@@ -107,4 +114,61 @@ class DiceGame2PlayerTest {
             return "";
         }
     }
+
+    @Test
+    public void givenNewPlayerScores2_returnBalanceIs3250(){
+        //arrange
+        hand.setRoll(2);
+        player.setHand(hand);
+        fakeInfoService.setPoints(2);
+        player.setInfoService(fakeInfoService);
+
+        int balance = player.getBalance() + 250;
+
+        //act
+        player.play();
+
+        //assert
+        assertEquals(balance, player.getBalance());
+        assertEquals(InfoService.TOWER, player.getLocation());
+        assertEquals("Du har fundet Tower og får 250 kr, du er rig!", player.getMessage());
+    }
+
+    @Test
+    public void givenNewPlayerScores3_returnBalanceIs2900(){
+        //arrange
+        hand.setRoll(3);
+        player.setHand(hand);
+        fakeInfoService.setPoints(3);
+        player.setInfoService(fakeInfoService);
+
+        int balance = player.getBalance() - 100;
+
+        //act
+        player.play();
+
+        //assert
+        assertEquals(balance, player.getBalance());
+        assertEquals(InfoService.CRATER, player.getLocation());
+        assertEquals("Du har fundet Crater og får -100 kr, du er ikke rig!", player.getMessage());
+    }
+
+    private class FakeHand extends Hand{
+
+        @Override
+        public int roll() {
+            return hand;
+        }
+
+        protected void setRoll(int roll){
+            super.hand = roll;
+        }
+
+        @Override
+        protected void setDice(Die[] dice) {
+
+        }
+    }
+
+    private class FakeInfoService extends DiceGame2InfoService { }
 }

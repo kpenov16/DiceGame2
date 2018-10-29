@@ -75,16 +75,16 @@ class DieTest {
 
         System.out.println(
                 "2 : " + occurrenceOf2 + " \n" +
-                        "3 : " + occurrenceOf3 + " \n" +
-                        "4 : " + occurrenceOf4 + " \n" +
-                        "5 : " + occurrenceOf5 + " \n" +
-                        "6 : " + occurrenceOf6 + " \n" +
-                        "7 : " + occurrenceOf7 + " \n" +
-                        "8 : " + occurrenceOf8 + " \n" +
-                        "9 : " + occurrenceOf9 + " \n" +
-                        "10 : " + occurrenceOf10 + " \n" +
-                        "11 : " + occurrenceOf11 + " \n" +
-                        "12 : " + occurrenceOf12 + " \n"
+                "3 : " + occurrenceOf3 + " \n" +
+                "4 : " + occurrenceOf4 + " \n" +
+                "5 : " + occurrenceOf5 + " \n" +
+                "6 : " + occurrenceOf6 + " \n" +
+                "7 : " + occurrenceOf7 + " \n" +
+                "8 : " + occurrenceOf8 + " \n" +
+                "9 : " + occurrenceOf9 + " \n" +
+                "10 : " + occurrenceOf10 + " \n" +
+                "11 : " + occurrenceOf11 + " \n" +
+                "12 : " + occurrenceOf12 + " \n"
         );
 
         for(String handOutcome : HAND_OUTCOMES)

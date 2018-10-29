@@ -1,6 +1,8 @@
 package dk.dicegame2.port;
 
 public abstract class InfoService {
+    public static final String CRATER = "Crater";
+    public static final String TOWER = "Tower";
     protected String message;
     protected int score;
     protected int points;

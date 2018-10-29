@@ -1,11 +1,12 @@
 package dk.dicegame2;
 
-public class HandImpl {
-    private Die[] dice;
-    private boolean diceAreSame = true;
+import dk.dicegame2.port.Hand;
 
+public class HandImpl extends Hand {
+
+    @Override
     public int roll() {
-        int hand = 0;
+        hand = 0;
         int currentDie = dice[0].roll();//1
         int previousDie = -1;
         hand += currentDie;
@@ -18,7 +19,7 @@ public class HandImpl {
         }
         return hand;
     }
-
+    @Override
     protected void setDice(Die[] dice){
         this.dice = dice;
     }
