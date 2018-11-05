@@ -127,6 +127,11 @@ class AccountTest {
         public String getMessage() {
             return null;
         }
+
+        @Override
+        public int getDie(int index) {
+            return 0;
+        }
     }
 
 }

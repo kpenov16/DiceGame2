@@ -165,8 +165,13 @@ class DiceGame2PlayerTest {
         }
 
         @Override
-        protected void setDice(Die[] dice) {
+        public void setDice(Die[] dice) {
 
+        }
+
+        @Override
+        public int getDie(int index) {
+            return 0;
         }
     }
 

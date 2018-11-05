@@ -18,9 +18,12 @@ public abstract class Player extends Owner{
 
     public abstract void play();
 
-    public abstract void setHand(Hand hand);
+    protected abstract void setHand(Hand hand);
 
     public abstract String getLocation();
 
     public abstract String getMessage();
+
+    public abstract int getDie(int index);
+
 }

@@ -43,7 +43,7 @@ public class DiceGame2Player extends Player {
     }
 
     @Override
-    protected void setInfoService(InfoService infoService) {
+    public void setInfoService(InfoService infoService) {
         super.infoService = infoService;
     }
 
@@ -77,4 +77,11 @@ public class DiceGame2Player extends Player {
     public String getMessage() {
         return super.infoService.getMessage();
     }
+
+    @Override
+    public int getDie(int index) {
+        return hand.getDie(index);
+    }
+
+
 }
