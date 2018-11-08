@@ -4,6 +4,7 @@ import dk.dicegame2.DiceGame2Account;
 import dk.dicegame2.DiceGame2InfoService;
 import dk.dicegame2.DiceGame2Player;
 import dk.dicegame2.Die;
+import dk.dicegame2.common.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,18 +14,42 @@ import static org.junit.jupiter.api.Assertions.*;
 class DiceGame2PlayerTest {
     private Player player;
     FakeHand hand;
-    FakeInfoService fakeInfoService;
+    DiceGame2InfoService diceGame2InfoService;
 
     @BeforeEach
     void setUp() {
         player = new DiceGame2Player(new DiceGame2Account());
         player.setName("Jan");
         hand = new FakeHand();
-        fakeInfoService = new FakeInfoService();
+        diceGame2InfoService = (DiceGame2InfoService) Context.createInfoService("DK");
     }
 
     @AfterEach
     void tearDown() {
+    }
+
+    @Test
+    public void givenNewPlayer_returnTimeBetweenRollsLessThan333Millisec(){
+        long start = 0;
+        long stop = 0;
+
+        //act
+        start = System.currentTimeMillis();
+
+        Player player1 = Context.createPlayer();
+        player1.setName("NAME");
+        player1.play();
+        int balance = player1.getBalance();
+        int firstDie = player1.getDie(0);
+        int secondDie = player1.getDie(1);
+        boolean isWinner = player1.isWinner();
+        String msg = player1.getMessage();
+
+        stop = System.currentTimeMillis();
+        long diffTime = stop - start;
+
+        //assert
+        assertTrue(diffTime  < 333);
     }
 
     @Test
@@ -120,8 +145,8 @@ class DiceGame2PlayerTest {
         //arrange
         hand.setRoll(2);
         player.setHand(hand);
-        fakeInfoService.setPoints(2);
-        player.setInfoService(fakeInfoService);
+        diceGame2InfoService.setPoints(2);
+        player.setInfoService(diceGame2InfoService);
 
         int balance = player.getBalance() + 250;
 
@@ -139,8 +164,8 @@ class DiceGame2PlayerTest {
         //arrange
         hand.setRoll(3);
         player.setHand(hand);
-        fakeInfoService.setPoints(3);
-        player.setInfoService(fakeInfoService);
+        diceGame2InfoService.setPoints(3);
+        player.setInfoService(diceGame2InfoService);
 
         int balance = player.getBalance() - 100;
 
@@ -175,5 +200,4 @@ class DiceGame2PlayerTest {
         }
     }
 
-    private class FakeInfoService extends DiceGame2InfoService { }
 }

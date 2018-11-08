@@ -1,6 +1,8 @@
 package dk.dicegame2.port;
 
-public abstract class Owner {
+import java.io.Serializable;
+
+public abstract class Owner implements Serializable {
     protected String name = "";
 
     public abstract String getName();

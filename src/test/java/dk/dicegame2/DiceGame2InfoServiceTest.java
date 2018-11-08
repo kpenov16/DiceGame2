@@ -1,5 +1,6 @@
 package dk.dicegame2;
 
+import dk.dicegame2.common.Context;
 import dk.dicegame2.port.InfoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,7 @@ class DiceGame2InfoServiceTest {
 
     @BeforeEach
     void setUp() {
-        infoService = new DiceGame2InfoService();
+        infoService = Context.createInfoService("DK");
     }
 
     @AfterEach

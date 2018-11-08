@@ -6,6 +6,9 @@ import dk.dicegame2.port.Hand;
 import dk.dicegame2.port.InfoService;
 import dk.dicegame2.port.Player;
 
+import java.io.*;
+import java.util.List;
+
 public class Context {
 
     public static Player createPlayer(){
@@ -34,11 +37,23 @@ public class Context {
         return null;
     }
 
-    public static InfoService createInfoService(String language){
-        if(language.equals("DK"))
-            return new DiceGame2InfoService();
-        else
-            return null;
+    public static FieldsInitializer createFieldsInitializer(){
+        return new FieldsInitializer();
+    }
+
+    public static InfoService createInfoService(String language) {
+        DiceGame2InfoService diceGame2InfoService = new DiceGame2InfoService();
+        MessageBag messageBag = Context.createMessageBag();
+        diceGame2InfoService.setMessageBag(messageBag);
+        if (language.equals("DK")) {
+            FieldsInitializer fieldsInitializer = Context.createFieldsInitializer();
+            fieldsInitializer.populateFields(messageBag, "DK.txt");
+        }
+        return diceGame2InfoService;
+    }
+
+    public static MessageBag createMessageBag() {
+        return new MessageBag();
     }
 
     public static Account createAccount(){

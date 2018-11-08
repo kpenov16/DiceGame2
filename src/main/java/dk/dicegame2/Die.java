@@ -1,7 +1,9 @@
 package dk.dicegame2;
 
 public abstract class Die {
+    protected int value;
     public abstract int roll();
-
-    public abstract int getValue();
+    public int getValue() {
+        return value;
+    }
 }

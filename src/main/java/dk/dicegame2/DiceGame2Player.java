@@ -6,7 +6,7 @@ import dk.dicegame2.port.InfoService;
 import dk.dicegame2.port.Player;
 
 public class DiceGame2Player extends Player {
-    Account account;
+    protected Account account;
 
     public DiceGame2Player(Account account){
         setAccount(account);

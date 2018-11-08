@@ -1,6 +1,8 @@
 package dk.dicegame2.port;
 
-public abstract class Account {
+import java.io.Serializable;
+
+public abstract class Account implements Serializable {
     //En spiller starter med 1000 kr i sin pengebeholdning.
     protected int balance = 1000;
     protected Owner owner;

@@ -1,5 +1,7 @@
 package dk.dicegame2.port;
 
+import java.util.List;
+
 public abstract class InfoService {
     public static final String CRATER = "Crater";
     public static final String TOWER = "Tower";
@@ -8,6 +10,8 @@ public abstract class InfoService {
     protected int points;
     protected String location;
 
+    public String varName = "";
+
     public abstract void setPoints(int points);
 
     public abstract int getScore();
@@ -15,4 +19,6 @@ public abstract class InfoService {
     public abstract String getMessage();
 
     public abstract String getLocation();
+
+
 }

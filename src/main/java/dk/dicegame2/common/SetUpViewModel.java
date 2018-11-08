@@ -6,5 +6,4 @@ public class SetUpViewModel {
     public int balanceSecondPlayer;
     String nameFirstPlayer;
     String nameSecondPlayer;
-
 }

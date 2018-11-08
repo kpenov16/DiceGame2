@@ -14,7 +14,7 @@ class AccountTest {
     void setUp() {
         //arrange
         account = new DiceGame2Account();
-        account.setBalance(1000);
+        //account.setBalance(1000);
     }
 
     @AfterEach
